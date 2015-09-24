@@ -67,18 +67,47 @@ var sumOfInterests = Math.round(
   }) * 100) / 100;
 
 /*
+  set higherStateSums to be the sum of
+    all amounts of every state
+    where the sum of amounts in the state is
+      greater than 1,000,000
+ */
+/*
+  set areStatesInHigherStateSum to be true if
+    all of these states have a sum of account values
+      greater than 2,550,000
+    Wisconsin
+    Illinois
+    Wyoming
+    Ohio
+    Georgia
+    Delaware
+  false otherwise
+ */
+/*
+  set anyStatesInHigherStateSum to be true if
+    any of these states have a sum of account values
+      greater than 2,550,000
+    Wisconsin
+    Illinois
+    Wyoming
+    Ohio
+    Georgia
+    Delaware
+  false otherwise
+ */
+var higherStateSums = null;
+var areStatesInHigherStateSum = null;
+var anyStatesInHigherStateSum = null;
+
+/*
   aggregate the sum of bankBalance amounts
-  grouped by state
-  set stateSums to be a hash table
+  grouped by state; set stateSums to be a hash table
     where the key is the two letter state abbreviation
     and the value is the sum of all amounts from that state
       the value must be rounded to the nearest cent
  */
-
 var stateSums = {};
-var higherStateSums = null;
-var areStatesInHigherStateSum = null;
-var anyStatesInHigherStateSum = null;
 
 dataset.bankBalances.forEach(function(obj, index, list) {
   if (stateSums[obj.state])
@@ -114,40 +143,6 @@ var lowerSumStates = Object.keys(lowerSums).filter(function(state) {
   return lowerSums[state] < 1000000;
 });
 
-/*
-  set higherStateSums to be the sum of
-    all amounts of every state
-    where the sum of amounts in the state is
-      greater than 1,000,000
- */
-// SEE CODE FOR stateSums 2 BLOCKS ABOVE;
-
-/*
-  set areStatesInHigherStateSum to be true if
-    all of these states have a sum of account values
-      greater than 2,550,000
-    Wisconsin
-    Illinois
-    Wyoming
-    Ohio
-    Georgia
-    Delaware
-  false otherwise
- */
-
-/*
-  set anyStatesInHigherStateSum to be true if
-    any of these states have a sum of account values
-      greater than 2,550,000
-    Wisconsin
-    Illinois
-    Wyoming
-    Ohio
-    Georgia
-    Delaware
-  false otherwise
- */
-
 
 /*
   set sumOfHighInterests to the sum of the 18.9% interest
@@ -162,7 +157,6 @@ var lowerSumStates = Object.keys(lowerSums).filter(function(state) {
     Delaware
   the result should be rounded to the nearest cent
  */
-
 var states = {};
 var sumOfHighInterests = Math.round(
   dataset.bankBalances.filter(function(obj) {
